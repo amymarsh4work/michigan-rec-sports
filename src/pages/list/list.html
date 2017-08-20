@@ -1,23 +1,38 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>{{ building.id }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-list-header>
+      Hours
+    </ion-list-header>
+    <ion-item>{{ building.hours }}</ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+
+  <ion-list>
+    <ion-list-header>
+      Rooms
+    </ion-list-header>
+    <ion-row *ngFor="let room of rooms | async">
+      <ion-col col-9>
+        {{ room.name }}
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="room.count" (change)="updateRoom(room)"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <div>
+    <button ion-button onclick="window.open('https://console.firebase.google.com/project/michigan-mobile/database/data/', '_blank', 'width=500,height=800')">Firebase View</button>
   </div>
+
 </ion-content>
