@@ -26,13 +26,9 @@ export class HomePage {
     this.navCtrl.push(ListPage, {"building": building});
   }
 
-  updateRoom(room) {
-    console.log('room:', room);
-    this.rooms.update(room.$key, {count: room.count});
-  }
-
   testCrash() {
     this.crashlyticsProvider.log('helloHomePage');
   }
+
 
 }

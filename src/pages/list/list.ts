@@ -21,10 +21,8 @@ export class ListPage implements OnInit {
   }
 
   updateRoom(room) {
-    this.rooms.update(room.$key, { count: room.count });
+    let now = new Date();
+    this.rooms.update(room.$key, { count: room.count, updated: now });
   }
 
-  openFirebase() {
-
-  }
 }
